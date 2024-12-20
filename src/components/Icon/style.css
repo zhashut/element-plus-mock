@@ -1,0 +1,16 @@
+.rl-icon {
+  --rl-icon-color: inherit;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  fill: currentColor;
+  color: var(--rl-icon-color);
+  font-size: inherit;
+}
+
+@each $val in primary,info,success,warning,danger {
+  .rl-icon--$(val) {
+    --rl-icon-color: var(--rl-color-$(val));
+  }
+}

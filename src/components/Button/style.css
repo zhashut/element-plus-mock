@@ -1,0 +1,125 @@
+.rl-button {
+  --rl-button-font-weight: var(--rl-font-weight-primary);
+  --rl-button-border-color: var(--rl-border-color);
+  --rl-button-bg-color: var(--rl-fill-color-blank);
+  --rl-button-text-color: var(--rl-text-color-regular);
+  --rl-button-disabled-text-color: var(--rl-disabled-text-color);
+  --rl-button-disabled-bg-color: var(--rl-fill-color-blank);
+  --rl-button-disabled-border-color: var(--rl-border-color-light);
+  --rl-button-hover-text-color: var(--rl-color-primary);
+  --rl-button-hover-bg-color: var(--rl-color-primary-light-9);
+  --rl-button-hover-border-color: var(--rl-color-primary-light-7);
+  --rl-button-active-text-color: var(--rl-button-hover-text-color);
+  --rl-button-active-border-color: var(--rl-color-primary);
+  --rl-button-active-bg-color: var(--rl-button-hover-bg-color);
+  --rl-button-outline-color: var(--rl-color-primary-light-5);
+  --rl-button-active-color: var(--rl-text-color-primary);
+}
+.rl-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  height: 32px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--rl-button-text-color);
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: .1s;
+  font-weight: var(--rl-button-font-weight);
+  user-select: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: var(--rl-button-bg-color);
+  border: var(--rl-border);
+  border-color: var(--rl-button-border-color);
+  padding: 8px 15px;
+  font-size: var(--rl-font-size-base);
+  border-radius: var(--rl-border-radius-base);
+  & + & {
+    margin-left: 12px;
+  }
+  &:hover,
+  &:focus {
+    color: var(--rl-button-hover-text-color);
+    border-color: var(--rl-button-hover-border-color);
+    background-color: var(--rl-button-hover-bg-color);
+    outline: none;    
+  }
+  &:active {
+    color: var(--rl-button-active-text-color);
+    border-color: var(--rl-button-active-border-color);
+    background-color: var(--rl-button-active-bg-color);
+    outline: none;
+  }
+  &.is-plain {
+    --rl-button-hover-text-color: var(--rl-color-primary);
+    --rl-button-hover-bg-color: var(--rl-fill-color-blank);
+    --rl-button-hover-border-color: var(--rl-color-primary);    
+  }
+  /*round*/
+  &.is-round {
+    border-radius: var(--rl-border-radius-round);
+  }
+  /*circle*/
+  &.is-circle {
+    border-radius: 50%;
+    padding: 8px;
+  }
+  /*disabled*/
+  &.is-disabled, &.is-disabled:hover, &.is-disabled:focus, 
+  &[disabled], &[disabled]:hover, &[disabled]:focus 
+  {
+    color: var(--rl-button-disabled-text-color);
+    cursor: not-allowed;
+    background-image: none;
+    background-color: var(--rl-button-disabled-bg-color);
+    border-color: var(--rl-button-disabled-border-color);
+  }
+  [class*=rl-icon] + span {
+    margin-left: 6px;
+  }
+}
+@each $val in primary,success,warning,info,danger {
+  .rl-button--$(val) {
+    --rl-button-text-color: var(--rl-color-white);
+    --rl-button-bg-color: var(--rl-color-$(val));
+    --rl-button-border-color: var(--rl-color-$(val));
+    --rl-button-outline-color: var(--rl-color-$(val)-light-5);
+    --rl-button-active-color: var(--rl-color-$(val)-dark-2);
+    --rl-button-hover-text-color: var(--rl-color-white);
+    --rl-button-hover-bg-color: var(--rl-color-$(val)-light-3);
+    --rl-button-hover-border-color: var(--rl-color-$(val)-light-3);
+    --rl-button-active-bg-color: var(--rl-color-$(val)-dark-2);
+    --rl-button-active-border-color: var(--rl-color-$(val)-dark-2);
+    --rl-button-disabled-text-color: var(--rl-color-white);
+    --rl-button-disabled-bg-color: var(--rl-color-$(val)-light-5);
+    --rl-button-disabled-border-color: var(--rl-color-$(val)-light-5);
+  }
+  .rl-button--$(val).is-plain {
+    --rl-button-text-color: var(--rl-color-$(val));
+    --rl-button-bg-color: var(--rl-color-$(val)-light-9);
+    --rl-button-border-color: var(--rl-color-$(val)-light-5);
+    --rl-button-hover-text-color: var(--rl-color-white);
+    --rl-button-hover-bg-color: var(--rl-color-$(val));
+    --rl-button-hover-border-color: var(--rl-color-$(val));
+    --rl-button-active-text-color: var(--rl-color-white);
+  }
+}
+.rl-button--large {
+  --rl-button-size: 40px;
+  height: var(--rl-button-size);
+  padding: 12px 19px;
+  font-size: var(--rl-font-size-base);
+  border-radius: var(--rl-border-radius-base);
+}
+.rl-button--small {
+  --rl-button-size: 24px;
+  height: var(--rl-button-size);
+  padding: 5px 11px;
+  font-size: 12px;
+  border-radius: calc(var(--rl-border-radius-base) - 1px);
+}
+
