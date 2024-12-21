@@ -10,6 +10,11 @@
         </template>
         <Input v-model="model.password" type="password" />
       </FormItem>
+      <FormItem label="test value" prop="test">
+        <template #default="{ validate }">
+          <input type="text" v-model="model.test" @blur="validate()"/>
+        </template>
+      </FormItem>
       <div>
         <Button type="primary">Submit</Button>
         <Button>Reset</Button>
@@ -32,11 +37,13 @@ import { reactive } from "vue";
 const model = reactive({
   email: "",
   password: "",
+  test: "",
 });
 
 const rules = reactive({
   email: [{ type: "email", required: true, trigger: "blur" }],
   password: [{ type: "string", required: true, trigger: "blur", min: 3, max: 5 }],
+  test: [{ type: "string", required: true, trigger: "blur" }],
 });
 </script>
 

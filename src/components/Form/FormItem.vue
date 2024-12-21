@@ -13,7 +13,7 @@
       </slot>
     </label>
     <div class="rl-form-item__content">
-      <slot />
+      <slot :validate="validate" />
       <div
         class="rl-form-item__error-msg"
         v-if="validateStatus.state === ResponseStatus.ERROR"
@@ -27,10 +27,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, reactive } from "vue";
-import { formContextKey } from "./types";
+import { computed, inject, reactive, provide } from "vue";
+import { formContextKey, formItemContextKey } from "./types";
 import { isNil } from "lodash-es";
-import type { FormItemProps, FormValidateFailure } from "./types";
+import type {
+  FormItemProps,
+  FormValidateFailure,
+  FormItemContext,
+} from "./types";
 import { ResponseStatus } from "../constant/constant";
 import Schema from "async-validator";
 
@@ -83,6 +87,12 @@ const validate = () => {
       });
   }
 };
+
+// 依赖注入
+const context: FormItemContext = {
+  validate,
+};
+provide(formItemContextKey, context);
 </script>
 
 <style lang="less" scoped></style>
