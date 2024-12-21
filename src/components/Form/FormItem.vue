@@ -6,16 +6,38 @@
       </slot>
     </label>
     <div class="rl-form-item__content">
-      <slot/>
+      <slot />
     </div>
+    {{ innerValue }} - {{ itemRules }}
   </div>
 </template>
 
 <script setup lang="ts">
-import type {FormItemProps} from './types';
+import { computed, inject } from "vue";
+import { formContextKey } from "./types";
+import { isNil } from "lodash-es";
+import type { FormItemProps } from "./types";
 
-const props = defineProps<FormItemProps>()
+const props = defineProps<FormItemProps>();
+const formContext = inject(formContextKey);
 
+const innerValue = computed(() => {
+  const model = formContext?.model;
+  if (model && props.prop && !isNil(model[props.prop])) {
+    return model[props.prop];
+  } else {
+    return null;
+  }
+});
+
+const itemRules = computed(() => {
+  const rules = formContext?.rules;
+  if (rules && props.prop && !isNil(rules[props.prop])) {
+    return rules[props.prop];
+  } else {
+    return [];
+  }
+});
 </script>
 
 <style lang="less" scoped></style>
