@@ -9,6 +9,7 @@
       <slot />
     </div>
     {{ innerValue }} - {{ itemRules }}
+    <button @click.prevent="validate()">validate</button>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import { computed, inject } from "vue";
 import { formContextKey } from "./types";
 import { isNil } from "lodash-es";
 import type { FormItemProps } from "./types";
+import Schema from "async-validator";
 
 const props = defineProps<FormItemProps>();
 const formContext = inject(formContextKey);
@@ -38,6 +40,23 @@ const itemRules = computed(() => {
     return [];
   }
 });
+
+const validate = () => {
+  const modelName = props.prop;
+  if (modelName) {
+    const validtor = new Schema({
+      [modelName]: itemRules.value,
+    });
+    validtor
+      .validate({ [modelName]: innerValue.value })
+      .then(() => {
+        console.log("no error");
+      })
+      .catch((e) => {
+        console.log(e.errors);
+      });
+  }
+};
 </script>
 
 <style lang="less" scoped></style>
