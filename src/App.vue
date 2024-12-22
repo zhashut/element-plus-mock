@@ -7,25 +7,25 @@
       <Button round>Round Button</Button>
       <Button circle>RL</Button>
       <Button disabled>Disabled Button</Button>
-      <br/><br/>
+      <br /><br />
       <Button type="primary">Primary</Button>
       <Button type="success">Success</Button>
       <Button type="info">Info</Button>
       <Button type="warning">Warning</Button>
       <Button type="danger">Danger</Button>
-      <br/><br/>
+      <br /><br />
       <Button type="primary" plain>Primary</Button>
       <Button type="success" plain>Success</Button>
       <Button type="info" plain>Info</Button>
       <Button type="warning" plain>Warning</Button>
       <Button type="danger" plain>Danger</Button>
-      <br/><br/>
+      <br /><br />
       <Button size="large">Large</Button>
       <Button size="small">Small</Button>
-      <br/><br/>
+      <br /><br />
       <Button size="large" loading>Loading</Button>
       <Button size="large" icon="bars-progress">Icon</Button>
-      <br/><br/>
+      <br /><br />
     </div>
 
     <h2>Collapse 折叠面板</h2>
@@ -45,7 +45,7 @@
 
     <h2>Form 表单</h2>
     <div class="icon-container">
-      <Basic/>
+      <Basic />
     </div>
 
     <h2>Icon 图标</h2>
@@ -57,20 +57,20 @@
     <h2>Tooltip 文字提示</h2>
     <div class="tooltip-container common-container">
       <Tooltip
-          content="triggered by rl"
-          placement="right-end"
-          :trigger="trigger"
-          ref="tooltipRef"
-          :open-delay="1000"
-          :close-delay="1000"
-          :popperOptions="popperOptions"
+        content="triggered by rl"
+        placement="right-end"
+        :trigger="trigger"
+        ref="tooltipRef"
+        :open-delay="1000"
+        :close-delay="1000"
+        :popperOptions="popperOptions"
       >
         <img
-            alt="Vue log"
-            class="logo"
-            src="./assets//logo.svg"
-            width="30"
-            height="30"
+          alt="Vue log"
+          class="logo"
+          src="./assets//logo.svg"
+          width="30"
+          height="30"
         />
         <template #content>
           <h4>triggered by rl with slot</h4>
@@ -81,45 +81,45 @@
     <h2>Dropdown 下拉菜单</h2>
     <div class="tooltip-container common-container">
       <Dropdown
-          placement="bottom"
-          :trigger="dropdownTrigger"
-          :menu-options="menuOptions"
+        placement="bottom"
+        :trigger="dropdownTrigger"
+        :menu-options="menuOptions"
       >
         <img
-            alt="snow log"
-            class="logo"
-            src="./assets//snow-icon.svg"
-            width="30"
-            height="30"
+          alt="snow log"
+          class="logo"
+          src="./assets//snow-icon.svg"
+          width="30"
+          height="30"
         />
       </Dropdown>
     </div>
 
     <h2>Input 输入框</h2>
     <div class="icon-container">
-      <Input type="password" placeholder="请输入密码"/>
+      <Input type="password" placeholder="请输入密码" />
     </div>
 
     <h2>Switch 开关</h2>
     <div class="icon-container">
-      <Switch/>
+      <Switch />
     </div>
 
     <h2>Select 选择器</h2>
     <div class="icon-container">
       <Select
-          v-model="selectVal"
-          placeholder="请选择"
-          :options="selectOptions"
+        v-model="selectVal"
+        placeholder="请选择"
+        :options="selectOptions"
       />
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted, h} from "vue";
+import { ref, onMounted, h } from "vue";
 import Dropdown from "./components/Dropdown/Dropdown.vue";
-import type {MenuOption} from "./components/Dropdown/types";
+import type { MenuOption } from "./components/Dropdown/types";
 import Button from "./components/Button/Button.vue";
 import Collapse from "./components/Collapse/Collapse.vue";
 import Item from "./components/Collapse/CollapseItem.vue";
@@ -129,10 +129,10 @@ import Input from "./components/Input/Input.vue";
 import Switch from "./components/Switch/Switch.vue";
 import Select from "./components/Select/Select.vue";
 import Basic from "./components/Form/Basic.vue";
-import {createMessage, closeAll} from "./components/Message/method";
-import type {ButtonInstance} from "./components/Button/types";
-import type {TooltipInstance} from "./components/Tooltip/types";
-import type {Options} from "@popperjs/core";
+import { createMessage, closeAll } from "./components/Message/method";
+import type { ButtonInstance } from "./components/Button/types";
+import type { TooltipInstance } from "./components/Tooltip/types";
+import type { Options } from "@popperjs/core";
 
 const buttonRef = ref<ButtonInstance | null>(null);
 const openedValue = ref(["a"]);
@@ -141,7 +141,7 @@ const openedValue = ref(["a"]);
 const trigger = ref<"hover" | "click">("hover");
 const tooltipRef = ref<TooltipInstance>();
 const open = () => {
-  createMessage({message: "hello world", duration: 0, showClose: true});
+  createMessage({ message: "hello world", duration: 0, showClose: true });
   tooltipRef.value?.show();
 };
 const close = () => {
@@ -181,7 +181,7 @@ const menuOptions: MenuOption[] = [
 // dropdown 组件相关 end
 
 onMounted(() => {
-  createMessage({message: "hello world", duration: 0, showClose: true});
+  createMessage({ message: "hello world", duration: 0, showClose: true });
   createMessage({
     message: "hello world again",
     duration: 0,

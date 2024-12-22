@@ -5,6 +5,7 @@
       'is-error': validateStatus.state === ResponseStatus.ERROR,
       'is-success': validateStatus.state === ResponseStatus.SUCCESS,
       'is-loading': validateStatus.loading,
+      'is-required': isRequired,
     }"
   >
     <label class="rl-form-item__label">
@@ -21,8 +22,6 @@
         {{ validateStatus.errorMsg }}
       </div>
     </div>
-    {{ innerValue }} - {{ itemRules }}
-    <button @click.prevent="validate()">validate</button>
   </div>
 </template>
 
@@ -69,6 +68,10 @@ const itemRules = computed(() => {
   } else {
     return [];
   }
+});
+
+const isRequired = computed(() => {
+  return itemRules.value.some((rule) => rule.required);
 });
 
 const getTiggeredRules = (trigger?: string) => {
