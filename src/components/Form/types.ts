@@ -29,14 +29,26 @@ export interface FormValidateFailure {
 
 export interface FormItemContext {
     prop: string;
-    validate: (trigger?: string) => any;
+    validate: (trigger?: string) => Promise<any>;
     clearValidate: () => void;
     resetFileds: () => void;
 }
 
+export interface ValidateStatusProp {
+    state: 'init' | 'success' | 'error';
+    errorMsg: string;
+    loading: boolean;
+}
 
 export interface FormInstance {
     validate: () => Promise<any>;
+    clearValidate: () => void;
+    resetFileds: () => void;
+}
+
+export interface FormItemInstance {
+    validateStatus: ValidateStatusProp;
+    validate: (trigger?: string) => Promise<any>;
     clearValidate: () => void;
     resetFileds: () => void;
 }

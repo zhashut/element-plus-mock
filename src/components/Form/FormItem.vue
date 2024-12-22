@@ -40,13 +40,15 @@ import type {
   FormItemProps,
   FormValidateFailure,
   FormItemContext,
+  ValidateStatusProp,
+  FormItemInstance,
 } from "./types";
 import { ResponseStatus } from "../constant/constant";
 import Schema from "async-validator";
 
 const props = defineProps<FormItemProps>();
 const formContext = inject(formContextKey);
-const validateStatus = reactive({
+const validateStatus = reactive<ValidateStatusProp>({
   state: "init",
   errorMsg: "",
   loading: false,
@@ -86,7 +88,7 @@ const getTiggeredRules = (trigger?: string) => {
   });
 };
 
-const validate = (trigger?: string) => {
+const validate = async (trigger?: string) => {
   const modelName = props.prop;
   const triggeredRules = getTiggeredRules(trigger);
   if (triggeredRules.length === 0) {
@@ -148,6 +150,14 @@ onMounted(() => {
 
 onUnmounted(() => {
   formContext?.removeFiled(context);
+});
+
+// 将一些信息和方法暴露出去给用户使用
+defineExpose<FormItemInstance>({
+  validateStatus,
+  validate,
+  clearValidate,
+  resetFileds,
 });
 </script>
 
