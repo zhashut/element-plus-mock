@@ -30,11 +30,15 @@ export interface FormValidateFailure {
 export interface FormItemContext {
     prop: string;
     validate: (trigger?: string) => any;
+    clearValidate: () => void;
+    resetFileds: () => void;
 }
 
 
 export interface FormInstance {
     validate: () => Promise<any>;
+    clearValidate: () => void;
+    resetFileds: () => void;
 }
 
 export const formContextKey: InjectionKey<FormContext> = Symbol('formContextKey')

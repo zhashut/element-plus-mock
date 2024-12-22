@@ -49,6 +49,22 @@ const validate = async () => {
   return Promise.reject(validationErrors);
 };
 
+const clearValidate = (keys: string[] = []) => {
+  const filterArr =
+    keys?.length > 0
+      ? fileds.filter((filed) => keys.includes(filed.prop))
+      : fileds;
+  filterArr.forEach((filed) => filed.clearValidate());
+};
+
+const resetFileds = (keys: string[] = []) => {
+  const filterArr =
+    keys?.length > 0
+      ? fileds.filter((filed) => keys.includes(filed.prop))
+      : fileds;
+  filterArr.forEach((filed) => filed.resetFileds());
+};
+
 provide(formContextKey, {
   ...props,
   addFiled,
@@ -57,6 +73,8 @@ provide(formContextKey, {
 
 defineExpose<FormInstance>({
   validate,
+  clearValidate,
+  resetFileds,
 });
 </script>
 

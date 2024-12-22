@@ -48,11 +48,10 @@ import Schema from "async-validator";
 const props = defineProps<FormItemProps>();
 const formContext = inject(formContextKey);
 const validateStatus = reactive({
-  state: "",
+  state: "init",
   errorMsg: "",
   loading: false,
 });
-
 const innerValue = computed(() => {
   const model = formContext?.model;
   if (model && props.prop && !isNil(model[props.prop])) {
@@ -61,6 +60,7 @@ const innerValue = computed(() => {
     return null;
   }
 });
+let initialValue: any = null;
 
 const itemRules = computed(() => {
   const rules = formContext?.rules;
@@ -113,16 +113,33 @@ const validate = (trigger?: string) => {
   }
 };
 
+const clearValidate = () => {
+  validateStatus.state = "init";
+  validateStatus.errorMsg = "";
+  validateStatus.loading = false;
+};
+
+const resetFileds = () => {
+  clearValidate();
+  const model = formContext?.model;
+  if (model && props.prop && !isNil(model[props.prop])) {
+    model[props.prop] = initialValue;
+  }
+};
+
 // 依赖注入
 const context: FormItemContext = {
-  validate,
   prop: props.prop || "",
+  validate,
+  clearValidate,
+  resetFileds,
 };
 provide(formItemContextKey, context);
 
 onMounted(() => {
   if (props.prop) {
     formContext?.addFiled(context);
+    initialValue = innerValue.value;
   }
 });
 

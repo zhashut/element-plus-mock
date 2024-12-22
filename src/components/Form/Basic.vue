@@ -12,7 +12,8 @@
       </FormItem>
       <div>
         <Button type="primary" @click.prevent="submit">Submit</Button>
-        <Button>Reset</Button>
+        <Button @click.prevent="clear">Clear</Button>
+        <Button @click.prevent="reset">Reset</Button>
       </div>
     </Form>
     <p>
@@ -31,8 +32,8 @@ import { reactive, ref } from "vue";
 import type { FormRules } from "./types";
 
 const model = reactive({
-  email: "",
-  password: "",
+  email: "zhashut",
+  password: "123456",
 });
 
 const rules = reactive<FormRules>({
@@ -48,6 +49,12 @@ const submit = async () => {
     } catch(e) {
         console.log('validate failed error', e)
     }
+}
+const clear = () => {
+    formRef.value.clearValidate()
+}
+const reset = () => {
+    formRef.value.resetFileds()
 }
 </script>
 
