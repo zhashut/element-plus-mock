@@ -27,7 +27,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, reactive, provide } from "vue";
+import {
+  computed,
+  inject,
+  reactive,
+  provide,
+  onMounted,
+  onUnmounted,
+} from "vue";
 import { formContextKey, formItemContextKey } from "./types";
 import { isNil } from "lodash-es";
 import type {
@@ -106,8 +113,19 @@ const validate = (trigger?: string) => {
 // 依赖注入
 const context: FormItemContext = {
   validate,
+  prop: props.prop || "",
 };
 provide(formItemContextKey, context);
+
+onMounted(() => {
+  if (props.prop) {
+    formContext?.addFileds(context);
+  }
+});
+
+onUnmounted(() => {
+  formContext?.removeFileds(context);
+});
 </script>
 
 <style lang="less" scoped></style>
