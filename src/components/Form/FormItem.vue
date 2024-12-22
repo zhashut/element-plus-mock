@@ -64,11 +64,26 @@ const itemRules = computed(() => {
   }
 });
 
-const validate = () => {
+const getTiggeredRules = (trigger?: string) => {
+  if (!trigger) {
+    return [];
+  }
+  const rules = itemRules.value;
+  return rules.filter((rule) => {
+    if (!rule.trigger && !trigger) return true;
+    return rule.trigger && rule.trigger === trigger;
+  });
+};
+
+const validate = (trigger?: string) => {
   const modelName = props.prop;
+  const triggeredRules = getTiggeredRules(trigger);
+  if (triggeredRules.length === 0) {
+    return true;
+  }
   if (modelName) {
     const validtor = new Schema({
-      [modelName]: itemRules.value,
+      [modelName]: triggeredRules,
     });
     validateStatus.loading = true;
     validtor

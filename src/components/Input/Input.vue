@@ -116,6 +116,9 @@ const isFocus = ref(false);
 const passwordVisible = ref(false);
 const inputRef = ref() as Ref<HTMLInputElement>;
 const formItemContext = inject(formItemContextKey);
+const runValidation = (trigger?: string) => {
+  formItemContext?.validate(trigger);
+};
 
 const showClear = computed(
   () =>
@@ -135,9 +138,11 @@ const keepFocus = async () => {
 const handleInput = () => {
   emits("update:modelValue", innerValue.value);
   emits("input", innerValue.value);
+  runValidation("input");
 };
 const handleChange = () => {
   emits("change", innerValue.value);
+  runValidation("change");
 };
 const handleFocus = (event: FocusEvent) => {
   isFocus.value = true;
@@ -148,7 +153,7 @@ const handleBlur = (event: FocusEvent) => {
   isFocus.value = false;
   emits("blur", event);
   // 在失去焦点时触发校验
-  formItemContext?.validate();
+  runValidation("blur");
 };
 const clear = () => {
   console.log("clear triggered");
