@@ -72,12 +72,13 @@ const itemRules = computed(() => {
 });
 
 const getTiggeredRules = (trigger?: string) => {
-  if (!trigger) {
+  const rules = itemRules.value;
+  console.log("getTiggeredRules rules", rules);
+  if (!rules) {
     return [];
   }
-  const rules = itemRules.value;
   return rules.filter((rule) => {
-    if (!rule.trigger && !trigger) return true;
+    if (!rule.trigger || !trigger) return true;
     return rule.trigger && rule.trigger === trigger;
   });
 };
@@ -93,7 +94,7 @@ const validate = (trigger?: string) => {
       [modelName]: triggeredRules,
     });
     validateStatus.loading = true;
-    validtor
+    return validtor
       .validate({ [modelName]: innerValue.value })
       .then(() => {
         validateStatus.state = ResponseStatus.SUCCESS;
@@ -103,6 +104,8 @@ const validate = (trigger?: string) => {
         validateStatus.state = ResponseStatus.ERROR;
         validateStatus.errorMsg =
           errors && errors.length > 0 ? errors[0].message || "" : "";
+        console.log("validate errors", e.errors);
+        return Promise.reject(e);
       })
       .finally(() => {
         validateStatus.loading = false;
@@ -119,12 +122,12 @@ provide(formItemContextKey, context);
 
 onMounted(() => {
   if (props.prop) {
-    formContext?.addFileds(context);
+    formContext?.addFiled(context);
   }
 });
 
 onUnmounted(() => {
-  formContext?.removeFileds(context);
+  formContext?.removeFiled(context);
 });
 </script>
 
