@@ -1,4 +1,5 @@
 export type SwitchValueType = boolean | string | number;
+
 export interface SwtichProps {
   modelValue: SwitchValueType;
   disabled?: boolean;
@@ -12,6 +13,6 @@ export interface SwtichProps {
 }
 
 export interface SwtichEmits {
-  (e: 'update:modelValue', value: SwitchValueType) : void;
+  (e: 'update:modelValue', value: SwitchValueType): void;
   (e: 'change', value: SwitchValueType): void;
 }

@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-export type ButtonType = 'primary'| 'success'| 'warning'| 'danger'| 'info'
+export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'info'
 export type ButtonSize = 'large' | 'small'
 export type NativeType = 'button' | 'submit' | 'reset'
 
@@ -15,9 +15,11 @@ export interface ButtonProps {
   icon?: string;
   loading?: boolean;
 }
+
 export interface ButtonInstance {
   ref: HTMLButtonElement
 }
+
 export const buttonProps = {
   type: {
     type: String as PropType<ButtonType>

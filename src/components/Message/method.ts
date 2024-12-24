@@ -2,8 +2,10 @@ import { render, h, shallowReactive } from 'vue'
 import type { CreateMessageProps, MessageContext } from './types'
 import MessageConstructor from './Message.vue'
 import useZIndex from '../../hooks/useZIndex'
+
 let seed = 1
 const instances: MessageContext[] = shallowReactive([])
+
 export const createMessage = (props: CreateMessageProps) => {
   const { nextZIndex } = useZIndex()
   const id = `message_${seed++}`
@@ -48,6 +50,7 @@ export const createMessage = (props: CreateMessageProps) => {
 export const getLastInstance = () => {
   return instances.at(-1)
 }
+
 export const getLastBottomOffset = (id: string) => {
   const idx = instances.findIndex(instance => instance.id === id)
   console.log('idx', id, idx, instances.length)

@@ -1,5 +1,6 @@
-import {  onMounted, onBeforeUnmount, isRef, watch, unref } from 'vue'
+import { onMounted, onBeforeUnmount, isRef, watch, unref } from 'vue'
 import type { Ref } from 'vue'
+
 export default function useEventListener(
   target: Ref<EventTarget | null> | EventTarget,
   event: string,

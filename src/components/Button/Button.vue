@@ -9,7 +9,7 @@
       'is-round': round,
       'is-circle': circle,
       'is-disabled': disabled,
-      'is-loading': loading
+      'is-loading': loading,
     }"
     :disabled="disabled || loading"
     :autofocus="autofocus"
@@ -24,26 +24,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import type { ButtonProps } from './types'
-import Icon from '../Icon/Icon.vue'
+import { ref } from "vue";
+import type { ButtonProps } from "./types";
+import Icon from "../Icon/Icon.vue";
+
 // import { buttonProps } from './types'
 defineOptions({
-  name: 'RlButton'
-})
+  name: "RlButton",
+});
 
 withDefaults(defineProps<ButtonProps>(), {
-  nativeType: 'button'
-})
+  nativeType: "button",
+});
 
-const _ref = ref<HTMLButtonElement>()
+const _ref = ref<HTMLButtonElement>();
 
 defineExpose({
-  ref: _ref
-})
+  ref: _ref,
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
+<style scoped></style>

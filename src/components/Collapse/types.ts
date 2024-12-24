@@ -5,6 +5,7 @@ export interface CollapseProps {
   modelValue: NameType[];
   accordion?: boolean;
 }
+
 export interface CollapseItemProps {
   name: NameType;
   title?: string;
@@ -17,7 +18,8 @@ export interface CollapseContext {
 }
 
 export interface CollapseEmits {
-  (e:'update:modelValue', values: NameType[]) : void;
-  (e:'change', values: NameType[]) : void;
+  (e: 'update:modelValue', values: NameType[]): void;
+  (e: 'change', values: NameType[]): void;
 }
+
 export const collapseContextKey: InjectionKey<CollapseContext> = Symbol('collapseContextKey')

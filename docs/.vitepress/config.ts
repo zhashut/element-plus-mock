@@ -31,25 +31,16 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' },
-      { text: 'Test', link: '/markdown-examples' }
-    ],
+    nav: [],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: '组件',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
-          { text: 'Test here', link: '/api-examples' }
-        ]
-      },
-      {
-        text: 'Basic',
-        items: [
-          {text: 'Button', link: '/components/button' }
+          { text: 'Button', link: '/components/button' },
+          { text: 'Input', link: '/components/input' },
+          { text: 'Select', link: '/components/select' },
+          { text: 'Switch', link: '/components/switch' },
         ]
       }
     ],
