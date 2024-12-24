@@ -42,6 +42,7 @@ export default defineConfig({
           { text: 'Select', link: '/components/select' },
           { text: 'Switch', link: '/components/switch' },
           { text: 'Tooltip', link: '/components/tooltip' },
+          { text: 'Dropdown', link: '/components/dropdown' },
         ]
       }
     ],
