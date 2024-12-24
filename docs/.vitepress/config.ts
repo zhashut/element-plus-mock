@@ -43,6 +43,7 @@ export default defineConfig({
           { text: 'Switch', link: '/components/switch' },
           { text: 'Tooltip', link: '/components/tooltip' },
           { text: 'Dropdown', link: '/components/dropdown' },
+          { text: 'Icon', link: '/components/icon' },
         ]
       }
     ],
