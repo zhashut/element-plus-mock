@@ -5,8 +5,7 @@ import VueMacros from 'unplugin-vue-macros'
 import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "My Awesome Project",
-  description: "A VitePress Site",
+  title: "Element-Plus-Mock",
   vite: {
     plugins: [
       VueMacros.vite({
@@ -38,15 +37,15 @@ export default defineConfig({
         text: '组件',
         items: [
           { text: 'Button', link: '/components/button' },
-          { text: 'Input', link: '/components/input' },
-          { text: 'Select', link: '/components/select' },
-          { text: 'Switch', link: '/components/switch' },
-          { text: 'Message', link: '/components/message' },
+          { text: 'Collapse', link: '/components/collapse' },
+          { text: 'Icon', link: '/components/icon' },
           { text: 'Tooltip', link: '/components/tooltip' },
           { text: 'Dropdown', link: '/components/dropdown' },
-          { text: 'Icon', link: '/components/icon' },
+          { text: 'Message', link: '/components/message' },
+          { text: 'Input', link: '/components/input' },
+          { text: 'Switch', link: '/components/switch' },
+          { text: 'Select', link: '/components/select' },
           { text: 'Form', link: '/components/form' },
-          { text: 'Collapse', link: '/components/collapse' },
         ]
       }
     ],
