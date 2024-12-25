@@ -10,16 +10,12 @@
       <FormItem label="confirm password" prop="confirmPwd">
         <Input v-model="model.confirmPwd" type="password" />
       </FormItem>
-      <div>
+      <FormItem>
         <Button type="primary" @click.prevent="submit">Submit</Button>
         <Button @click.prevent="clear">Clear</Button>
         <Button @click.prevent="reset">Reset</Button>
-      </div>
+      </FormItem>
     </Form>
-    <p>
-        form value:
-        <pre>{{ model }}</pre>
-    </p>
   </div>
 </template>
 
@@ -38,28 +34,38 @@ const model = reactive({
 });
 
 const rules = reactive<FormRules>({
-  email: [{ type: "email", required: true, trigger: "blur" }, { type: "string", required: true, trigger: "change" }],
-  password: [{ type: "string", required: true, trigger: "blur", min: 3, max: 5 }],
-  confirmPwd: [{ type: "string", required: true, trigger: "blur", min: 3, max: 5 },
-    {validator: (rule, value) => value === model.password, trigger: 'blur', message: '两个密码必须相同'}
-  ]
+  email: [
+    { type: "email", required: true, trigger: "blur" },
+    { type: "string", required: true, trigger: "change" },
+  ],
+  password: [
+    { type: "string", required: true, trigger: "blur", min: 3, max: 5 },
+  ],
+  confirmPwd: [
+    { type: "string", required: true, trigger: "blur", min: 3, max: 5 },
+    {
+      validator: (rule, value) => value === model.password,
+      trigger: "blur",
+      message: "两个密码必须相同",
+    },
+  ],
 });
 
 const formRef = ref();
 const submit = async () => {
-    try {
-        await formRef.value.validate();
-        console.log('passed!')
-    } catch(e) {
-        console.log('validate failed error', e)
-    }
-}
+  try {
+    await formRef.value.validate();
+    console.log("passed!");
+  } catch (e) {
+    console.log("validate failed error", e);
+  }
+};
 const clear = () => {
-    formRef.value.clearValidate()
-}
+  formRef.value.clearValidate();
+};
 const reset = () => {
-    formRef.value.resetFileds()
-}
+  formRef.value.resetFileds();
+};
 </script>
 
 <style lang="less" scoped></style>

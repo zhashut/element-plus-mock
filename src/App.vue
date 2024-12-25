@@ -43,11 +43,6 @@
       </Collapse>
     </div>
 
-    <h2>Form 表单</h2>
-    <div class="icon-container">
-      <Basic />
-    </div>
-
     <h2>Icon 图标</h2>
     <div class="icon-container common-container">
       <Icon icon="user-secret" type="primary"></Icon>
@@ -112,6 +107,11 @@
         placeholder="请选择"
         :options="selectOptions"
       />
+    </div>
+
+    <h2>Form 表单</h2>
+    <div class="icon-container">
+      <Basic />
     </div>
   </main>
 </template>
